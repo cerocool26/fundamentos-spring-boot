@@ -1,7 +1,9 @@
 package com.fundamentos.loquillo;
 
+import com.fundamentos.loquillo.bean.MyBeanWithProperties;
 import com.fundamentos.loquillo.bean.Mybean;
 import com.fundamentos.loquillo.component.ComponentDependency;
+import com.fundamentos.loquillo.pojo.UserPojo;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +16,16 @@ public class FundamentosApplication implements CommandLineRunner {
 
 	private Mybean mybean;
 
-	public FundamentosApplication(@Qualifier("componentTwoImplement") ComponentDependency componentDependency, Mybean mybean){
+
+	private MyBeanWithProperties myBeanWithProperties;
+
+	private UserPojo userPojo;
+
+	public FundamentosApplication(@Qualifier("componentTwoImplement") ComponentDependency componentDependency, Mybean mybean, MyBeanWithProperties myBeanWithProperties, UserPojo userpojo){
 		this.componentDependency = componentDependency;
 		this.mybean = mybean;
+		this.myBeanWithProperties = myBeanWithProperties;
+		this.userPojo = userpojo;
 	}
 
 	public static void main(String[] args) {
@@ -28,5 +37,8 @@ public class FundamentosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		componentDependency.saludar();
 		mybean.print();
+		System.out.println(myBeanWithProperties.function());
+		System.out.println(userPojo.getEmail() + "-" + userPojo.getPassword());
+
 	}
 }
