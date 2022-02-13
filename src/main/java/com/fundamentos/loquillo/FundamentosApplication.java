@@ -4,6 +4,8 @@ import com.fundamentos.loquillo.bean.MyBeanWithProperties;
 import com.fundamentos.loquillo.bean.Mybean;
 import com.fundamentos.loquillo.component.ComponentDependency;
 import com.fundamentos.loquillo.pojo.UserPojo;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FundamentosApplication implements CommandLineRunner {
+
+	private final Log LOGGER = LogFactory.getLog(FundamentosApplication.class);
 
 	private ComponentDependency componentDependency;
 
@@ -39,6 +43,7 @@ public class FundamentosApplication implements CommandLineRunner {
 		mybean.print();
 		System.out.println(myBeanWithProperties.function());
 		System.out.println(userPojo.getEmail() + "-" + userPojo.getPassword());
+		LOGGER.error("Esto es un error del aplicativo");
 
 	}
 }
